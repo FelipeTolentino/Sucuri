@@ -17,26 +17,42 @@ Pilha *criaPilha(){
 
 /* Faz a desalocação da pilha */
 void liberaPilha(Pilha *p) {
-    AVISO(Pilha.c: ainda não completei a função 'liberaPilha');
-    
+    Objeto* atual = p->inicio;
+    while(atual){
+        Objeto* auxiliar = atual;
+        atual = atual->proximo;
+        liberaObjeto(auxiliar);
+        auxiliar = NULL;
+    }
+    free(p);
+    p = NULL;
 }
 
 /* Insere um novo objeto a pilha */
 void empilha(Pilha *p, Objeto *no) {
-    AVISO(Pilha.c: ainda não completei a função 'empilha');
-    
+    if (p->inicio == NULL){
+        p->inicio = no;
+    }
+    else{
+        no->proximo = p->inicio;
+        p->inicio = no;
+    }
+    p->n++;
 }
 
 /* Remove (apaga) o último elemento da pilha */
 void desempilha(Pilha *p){
-    AVISO(Pilha.c: ainda não completei a função 'desempilha');
-    
+    if (!p->n) return;
+    Objeto* auxiliar = p->inicio;
+    p->inicio = p->inicio->proximo;
+    liberaObjeto(auxiliar);
+    auxiliar = NULL;
+    p->n--;
 }
 
 /* Retorna o objeto do topo da pilha */
 Objeto *topoPilha(Pilha *p){
-    AVISO(Pilha.c: ainda não completei a função 'top');
-    return NULL;
+    return p->inicio;
 }
 
 /* Verifica se a pilha está vazia */
@@ -55,5 +71,10 @@ int tamanhoPilha(Pilha *p) {
  * Para imprimir um objeto, use a função imprimeObjeto.
  */
 void imprimePilha(Pilha *pilha, int tipo) {
-    
+    Objeto* atual = pilha->inicio;
+    while(atual){
+        printf("\n");
+        imprimeObjeto(atual, tipo);
+        atual = atual->proximo;
+    }
 }

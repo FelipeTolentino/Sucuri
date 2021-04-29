@@ -62,34 +62,35 @@ int main(int argc, char *argv[]) {
         /* TAREFA 1: implemente as função associadas a fila (Fila.c)*/
         /* Para verificar se deu tudo certo, você pode utilizar a função imprimeFila(filaObjetos, ITENS) */
         Fila *filaObjetos = criaFilaObjetos(linha);
-        
+        //imprimeFila(filaObjetos, ITEM);
         if(filaObjetos) {
             /* TAREFA 2: caso não tenha implementado, implemente a função 'converteElementosFila' (Fila.c) */
             /* Para verificar se deu tudo certo, você pode utilizar a função imprimeFila(filaObjetos, VALORES) */
             /* Quanto tudo estiver implementado, descomente a linha abaixo */
-            //converteElementosFila(filaObjetos, itemParaValor);
-
+            converteElementosFila(filaObjetos, itemParaValor);
+            //imprimeFila(filaObjetos, VALOR);
             /* TAREFA 3: implemente a função 'infixaParaPosfixa' (Posfixa.c) */
             /* A função converte a expressão em notação infix para notação pos-fixa */
             /* Para verificar se deu tudo certo, passando como argumento a opção '-e' */
             /* Quanto tudo estiver implementado, descomente as linhas abaixo */
-            // Fila *posfixa = infixaParaPosfixa(filaObjetos);
-            // if (exibirNotacaoPosFixa) {
-            //     printf("Expressão pós-fixa: ");
-            //     imprimePosFixa(posfixa);
-            // }
+            Fila *posfixa = infixaParaPosfixa(filaObjetos);
+            //imprimeFila(posfixa, VALOR);
+            if (exibirNotacaoPosFixa) {
+                 printf("Expressão pós-fixa: ");
+                 imprimePosFixa(posfixa);
+             }
 
             /* TAREFA 4: implemente a função 'avalia' (Avalia.c) */
             /* A função recebe uma fila de objetos em notação pós-fixa e retorna o resultado da expressão */
             /* Quanto tudo estiver implementado, descomente as linhas abaixo */
-            // Objeto *resultado = avalia(posfixa);
-            // if (resultado){
-            //     imprimeValor(resultado);
-            //     liberaObjeto(resultado);
-            // }
+            Objeto *resultado = avalia(posfixa);
+            if (resultado){
+                 imprimeValor(resultado);
+                 liberaObjeto(resultado);
+            }
 
-            //liberaFila(posfixa);
-            //liberaFila(filaObjetos);
+            liberaFila(posfixa);
+            liberaFila(filaObjetos);
         }
 
         if (modoInterativo)

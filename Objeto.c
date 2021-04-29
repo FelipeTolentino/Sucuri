@@ -14,15 +14,17 @@ Objeto *criaObjeto() {
 
 /* Retorna uma cópia do objeto */
 Objeto *copiaObjeto(Objeto *obj) {
-    AVISO(Objeto.c: ainda não completei a função 'copiaObjeto');
-    
-    return NULL;
+    Objeto* novo = criaObjeto();
+    novo->categoria = obj->categoria;
+    novo->valor = obj->valor;   
+    return novo;
 }
 
 void liberaObjeto(Objeto *o) {
 //    if (o->valor.pStr != NULL)
 //        free(o->valor.pStr);
     free(o);
+    o = NULL;
 }
 
 /*Imprime as informação do objeto de acordo com o 'tipo' (Util.h)*/
@@ -47,8 +49,15 @@ void imprimeObjeto(Objeto *obj, int tipo) {
         }
     }
     else if (tipo == POSFIXA) {
-        AVISO(Objeto.c: ainda não completei a função 'imprimeObjeto');
-        
+        if (obj->categoria >= 0 && obj->categoria <= 8){
+            printf("%s ", getOperador(obj->categoria));
+        }
+        else if (obj->categoria == FLOAT){
+            printf("%.1lf ", obj->valor.vFloat);
+        }
+        else if (obj->categoria == INT){
+            printf("%d ", obj->valor.vInt);
+        }
     }
 }
 
